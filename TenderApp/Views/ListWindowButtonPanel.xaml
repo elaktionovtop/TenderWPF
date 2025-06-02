@@ -1,0 +1,33 @@
+﻿<UserControl 
+    x:Class="TenderApp.Views.ListWindowButtonPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Background="#EAD8C0"
+    >
+    <StackPanel 
+        HorizontalAlignment="Left" 
+        Margin="0,10,0,0"
+        Orientation="Horizontal" 
+        >
+        <Button 
+            Command="{Binding CreateItemCommand}"
+            Content="Add" 
+            Visibility="{Binding ManagerVisibility}"
+            />
+        <Button 
+            Command="{Binding EditItemCommand}"
+            Content="Edit" 
+            Visibility="{Binding ManagerVisibility}"
+            />
+        <Button 
+            Command="{Binding DeleteItemCommand}"
+            Content="Remove" 
+            Visibility="{Binding ManagerVisibility}"
+            />
+        <Button 
+            Click="OnExitClick" 
+            Content="Exit" 
+            Margin="20,0,0,0"
+            />
+    </StackPanel>
+</UserControl>

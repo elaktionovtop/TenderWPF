@@ -1,0 +1,74 @@
+﻿<Window 
+    x:Class="TenderApp.Views.ProposalListWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="clr-namespace:TenderApp.ViewModels"
+    xmlns:view="clr-namespace:TenderApp.Views"
+
+    Background="#EAD8C0"
+    Height="600" 
+    Icon="/Images/Tender.png"
+    Title="Tender Proposals" 
+    Width="1000"
+    WindowStartupLocation="CenterScreen"
+    >
+    <Window.InputBindings>
+        <KeyBinding 
+            Command="{Binding CreateItemCommand}"
+            Key="N"
+            Modifiers="Control"
+            />
+    </Window.InputBindings>
+
+    <StackPanel 
+        Margin="10, 0">
+        <Menu
+            Visibility="{Binding BuyerVisibility}"
+            >
+            <MenuItem
+                Command="{Binding CalculateWinnerCommand}"
+                Header="Determine Winner"
+                InputGestureText="Ctrl+G"
+                />
+            <MenuItem
+                Command="{Binding CreateContractCommand}"
+                Header="Create Contract"
+                InputGestureText="Ctrl+R"
+                />
+        </Menu>
+
+        <view:ListWindowButtonPanel/>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid x:Name="dataGrid"
+                ItemsSource="{Binding Items}"
+                SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                Loaded="DataGrid_Loaded"
+                >
+                <DataGrid.Columns>
+                    <DataGridTextColumn 
+                        Binding="{Binding Tender.Product}"
+                        Header="Tender"
+                        />
+                    <DataGridTextColumn 
+                        Binding="{Binding Byer.Name}"
+                        Header="Participant"
+                        />
+                    <DataGridTextColumn 
+                        Binding="{Binding Comment}"
+                        Header="Comment"
+                        />
+                    <DataGridCheckBoxColumn 
+                        Binding="{Binding IsWinner}" 
+                        Header="Winner" 
+                        IsThreeState="False"
+                        />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </StackPanel>
+</Window>
