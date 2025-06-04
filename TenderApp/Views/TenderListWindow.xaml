@@ -70,6 +70,12 @@
                 Visibility="{Binding ManagerVisibility}"
                 />
             <MenuItem
+                Command="{Binding ContractsCommand}"
+                Header="Contract List"
+                InputGestureText="Ctrl+L"
+                Visibility="{Binding ManagerVisibility}"
+                />
+            <MenuItem
                 Command="{Binding BuyerTenderProposalCommand}"
                 Header="Participant's Proposals List"
                 InputGestureText="Ctrl+E"

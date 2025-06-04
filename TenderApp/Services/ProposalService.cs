@@ -47,7 +47,7 @@ namespace TenderApp.Services
 
         public void CreateContracts(int tenderId)
         {
-            var proposals = GetByTenderId(tenderId).Where(p => p.IsWinner);
+            var proposals = GetByTenderId(tenderId).Where(p => p.IsWinner).ToList();
 
             foreach(var p in proposals)
             {
@@ -58,6 +58,7 @@ namespace TenderApp.Services
         public void CreateContract(Proposal proposal)
         {
             Debug.WriteLine(proposal.Byer.Name);
+
             var fileName = $"Contract_{proposal.Id}.docx";
             var templatePath = @"..\..\..\Templates\ContractTemplate.docx";
             var outputPath = Path.Combine(@"..\..\..\Contracts", fileName);
@@ -74,6 +75,16 @@ namespace TenderApp.Services
             doc.ReplaceText("{Manager}", proposal?.Tender.CreatedBy.Name ?? " *** " );
 
             doc.SaveAs(outputPath);
+
+            var contract = new Contract
+            {
+                ProposalId = proposal.Id,
+                FilePath = outputPath,
+                Details = $"Договор по тендеру \"{proposal.Tender.Name}\" от {DateTime.Now:dd.MM.yyyy}"
+            };
+
+            _db.Contracts.Add(contract);
+            _db.SaveChanges();
         }
 
         public override Proposal Clone(Proposal source)

@@ -1,0 +1,56 @@
+﻿@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
+
+actor Admin
+actor CategoryManager
+actor Buyer
+
+rectangle TenderSystem {
+  
+  usecase "Управлять пользователями" as UC1
+  usecase "Создавать/редактировать критерии" as UC2
+  usecase "Создавать тендеры" as UC3
+  usecase "Задавать критерии тендерам" as UC4
+  usecase "Просматривать тендеры" as UC5
+  usecase "Просматривать заявки" as UC6
+  usecase "Оценивать заявки" as UC7
+  usecase "Выбирать победителя (авто)" as UC8
+  usecase "Указывать победителя вручную" as UC9
+  usecase "Создавать договоры" as UC10
+  usecase "Просматривать договоры" as UC11
+  usecase "Подача заявок" as UC12
+  usecase "Редактировать свои заявки" as UC13
+}
+
+Admin --> UC1
+Admin --> UC2
+Admin --> UC3
+Admin --> UC4
+Admin --> UC5
+Admin --> UC6
+Admin --> UC7
+Admin --> UC8
+Admin --> UC9
+Admin --> UC10
+Admin --> UC11
+Admin --> UC12
+Admin --> UC13
+
+CategoryManager --> UC2
+CategoryManager --> UC3
+CategoryManager --> UC4
+CategoryManager --> UC5
+CategoryManager --> UC6
+CategoryManager --> UC7
+CategoryManager --> UC8
+CategoryManager --> UC9
+CategoryManager --> UC10
+CategoryManager --> UC11
+
+Buyer --> UC5
+Buyer --> UC12
+Buyer --> UC13
+
+@enduml

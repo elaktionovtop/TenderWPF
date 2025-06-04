@@ -231,21 +231,21 @@ namespace TenderApp.Data
 
         static void VerifyContracts()
         {
-            if(!_db.Contracts.Any())
-            {
-                var proposal = _db.Proposals.First(p => p.Id == 1);
+            //if(!_db.Contracts.Any())
+            //{
+            //    var proposal = _db.Proposals.First(p => p.Id == 1);
 
-                _db.Contracts.Add
-                (
-                    new Contract
-                    {
-                        ProposalId = proposal.Id,
-                        Details = "Новый контракт",
-                        FilePath = "Контракт01.docx"
-                    }
-                );
-                _db.SaveChanges();
-            }
+            //    _db.Contracts.Add
+            //    (
+            //        new Contract
+            //        {
+            //            ProposalId = proposal.Id,
+            //            Details = "Новый контракт",
+            //            FilePath = "Контракт01.docx"
+            //        }
+            //    );
+            //    _db.SaveChanges();
+            //}
         }
     }
 }

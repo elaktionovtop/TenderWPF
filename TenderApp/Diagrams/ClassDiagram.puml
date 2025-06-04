@@ -1,0 +1,91 @@
+﻿@startuml
+skinparam classAttributeIconSize 0
+
+' Enum
+enum RoleCode {
+  Admin
+  CategoryManager
+  Buyer
+}
+
+enum CriterionType {
+  Numeric
+  Text
+}
+
+' Классы
+class User {
+  int Id
+  string Name
+  string Login
+  string Password
+  int RoleId
+}
+
+class Role {
+  int Id
+  RoleCode Code
+  string Name
+}
+
+class Tender {
+  int Id
+  string Name
+  string Product
+  decimal Budget
+  int Quantity
+  int CreatedById
+}
+
+class TenderCriterion {
+  int Id
+  double Weight
+  bool IsRequired
+  int TenderId
+  int CriterionId
+}
+
+class Criterion {
+  int Id
+  string Name
+  CriterionType Type
+}
+
+class Proposal {
+  int Id
+  bool IsWinner
+  string Comment
+  int TenderId
+  int ByerId
+}
+
+class CriterionValue {
+  int Id
+  int ProposalId
+  int TenderCriterionId
+  string Value
+  int? Score
+}
+
+class Contract {
+  int Id
+  int ProposalId
+  string Details
+  string FilePath
+}
+
+' Связи
+User --> Role
+Tender --> User : CreatedBy
+Tender --> TenderCriterion : Criteria
+Tender --> Proposal : Proposals
+TenderCriterion --> Tender
+TenderCriterion --> Criterion
+Proposal --> Tender
+Proposal --> User : Byer
+Proposal --> CriterionValue : Values
+CriterionValue --> Proposal
+CriterionValue --> TenderCriterion
+Contract --> Proposal
+
+@enduml

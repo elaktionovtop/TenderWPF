@@ -89,6 +89,14 @@ namespace TenderApp.ViewModels
             new CriterionListWindow().ShowDialog();
         }
 
+        //  окно контрактов (просмотр)
+        [RelayCommand]
+        private void Contracts()
+        {
+            Debug.WriteLine(nameof(Contracts));
+            new ContractListWindow().ShowDialog();
+        }
+
         //  ---------------------------------------
         //  команды Участника (Buyer)
         //  ---------------------------------------

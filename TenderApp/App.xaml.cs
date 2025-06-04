@@ -55,6 +55,11 @@ namespace TenderApp
             services.AddTransient<ProposalListViewModel>();
             services.AddTransient<ProposalListWindow>();
 
+            services.AddTransient<IDbService<Contract>, ContractService>();
+            services.AddTransient<ContractService>();
+            services.AddTransient<ContractListViewModel>();
+            services.AddTransient<ContractListWindow>();
+
             services.AddTransient<IDbService<User>, UserService>(); 
             services.AddTransient<UserService>();
             services.AddTransient<UserItemViewModel>();
