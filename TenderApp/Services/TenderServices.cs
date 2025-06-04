@@ -18,6 +18,7 @@ namespace TenderApp.Services
             return new()
             {
                 Id = source.Id,
+                Name = source.Name,
                 Product = source.Product,
                 Budget = source.Budget,
                 Quantity = source.Quantity,
@@ -33,6 +34,7 @@ namespace TenderApp.Services
         public override void CopyTo(Tender source, Tender target)
         {
             target.Id = source.Id;
+            target.Name = source.Name;
             target.Product = source.Product;
             target.Budget = source.Budget;
             target.Quantity = source.Quantity;
